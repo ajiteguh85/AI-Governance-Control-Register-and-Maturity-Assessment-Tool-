@@ -1,0 +1,161 @@
+{
+  "framework": "ISO/IEC 42001 AI Management Systems",
+  "version": "1.0",
+  "description": "Governance assessment template aligned with ISO/IEC 42001 requirements for establishing, implementing, maintaining, and continually improving an AI management system.",
+  "domains": [
+    {
+      "domain_id": "D1",
+      "name": "Context of the Organization",
+      "description": "Understanding the organization and its context, needs and expectations of interested parties, and scope of the AI management system.",
+      "controls": [
+        {
+          "control_id": "D1-C01",
+          "name": "Organizational Context Analysis",
+          "description": "Determine external and internal issues relevant to the organization's purpose that affect AI management system outcomes."
+        },
+        {
+          "control_id": "D1-C02",
+          "name": "Stakeholder Requirements",
+          "description": "Identify interested parties relevant to the AI management system and their requirements."
+        },
+        {
+          "control_id": "D1-C03",
+          "name": "AIMS Scope Definition",
+          "description": "Define boundaries and applicability of the AI management system scope."
+        }
+      ]
+    },
+    {
+      "domain_id": "D2",
+      "name": "Leadership & Commitment",
+      "description": "Top management leadership, AI policy establishment, and organizational roles/responsibilities.",
+      "controls": [
+        {
+          "control_id": "D2-C01",
+          "name": "Leadership Commitment",
+          "description": "Demonstrate top management commitment to the AI management system."
+        },
+        {
+          "control_id": "D2-C02",
+          "name": "AI Policy",
+          "description": "Establish an AI policy appropriate to the organization's purpose and providing a framework for setting AI objectives."
+        },
+        {
+          "control_id": "D2-C03",
+          "name": "Roles and Responsibilities",
+          "description": "Assign and communicate roles, responsibilities, and authorities for the AI management system."
+        }
+      ]
+    },
+    {
+      "domain_id": "D3",
+      "name": "Planning",
+      "description": "Actions to address risks and opportunities, AI objectives, and planning of changes.",
+      "controls": [
+        {
+          "control_id": "D3-C01",
+          "name": "Risk and Opportunity Assessment",
+          "description": "Determine risks and opportunities that need to be addressed to ensure the AI management system achieves intended outcomes."
+        },
+        {
+          "control_id": "D3-C02",
+          "name": "AI Risk Assessment",
+          "description": "Establish and maintain an AI risk assessment process covering AI-specific risks such as bias, safety, and transparency."
+        },
+        {
+          "control_id": "D3-C03",
+          "name": "AI Objectives and Planning",
+          "description": "Establish measurable AI objectives at relevant functions and levels, and plan how to achieve them."
+        }
+      ]
+    },
+    {
+      "domain_id": "D4",
+      "name": "Support & Resources",
+      "description": "Resources, competence, awareness, communication, and documented information.",
+      "controls": [
+        {
+          "control_id": "D4-C01",
+          "name": "Resource Allocation",
+          "description": "Determine and provide resources needed for the AI management system."
+        },
+        {
+          "control_id": "D4-C02",
+          "name": "Competence and Training",
+          "description": "Ensure persons involved in AI systems are competent based on education, training, or experience."
+        },
+        {
+          "control_id": "D4-C03",
+          "name": "Documentation and Records",
+          "description": "Maintain documented information required by the AI management system."
+        }
+      ]
+    },
+    {
+      "domain_id": "D5",
+      "name": "Operation",
+      "description": "Operational planning and control, AI risk treatment, and AI system impact assessment.",
+      "controls": [
+        {
+          "control_id": "D5-C01",
+          "name": "Operational Planning and Control",
+          "description": "Plan, implement, and control processes needed to meet AI management system requirements."
+        },
+        {
+          "control_id": "D5-C02",
+          "name": "AI System Impact Assessment",
+          "description": "Conduct impact assessments for AI systems considering effects on individuals and society."
+        },
+        {
+          "control_id": "D5-C03",
+          "name": "AI System Lifecycle Management",
+          "description": "Manage AI systems throughout their lifecycle including design, development, deployment, and decommissioning."
+        },
+        {
+          "control_id": "D5-C04",
+          "name": "Data Governance for AI",
+          "description": "Establish data quality, provenance, and governance requirements for AI system data."
+        }
+      ]
+    },
+    {
+      "domain_id": "D6",
+      "name": "Performance Evaluation",
+      "description": "Monitoring, measurement, analysis, evaluation, internal audit, and management review.",
+      "controls": [
+        {
+          "control_id": "D6-C01",
+          "name": "Monitoring and Measurement",
+          "description": "Determine what needs to be monitored and measured for AI management system performance."
+        },
+        {
+          "control_id": "D6-C02",
+          "name": "Internal Audit",
+          "description": "Conduct internal audits at planned intervals to verify AI management system conformity."
+        },
+        {
+          "control_id": "D6-C03",
+          "name": "Management Review",
+          "description": "Review the AI management system at planned intervals to ensure continuing suitability and effectiveness."
+        }
+      ]
+    },
+    {
+      "domain_id": "D7",
+      "name": "Improvement",
+      "description": "Nonconformity, corrective action, and continual improvement.",
+      "controls": [
+        {
+          "control_id": "D7-C01",
+          "name": "Nonconformity and Corrective Action",
+          "description": "React to nonconformities, evaluate the need for corrective action, and implement changes."
+        },
+        {
+          "control_id": "D7-C02",
+          "name": "Continual Improvement",
+          "description": "Continually improve the suitability, adequacy, and effectiveness of the AI management system."
+        }
+      ]
+    }
+  ]
+}

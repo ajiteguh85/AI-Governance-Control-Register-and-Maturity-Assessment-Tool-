@@ -1,0 +1,110 @@
+{
+  "framework": "AI-Based ESG Monitoring Governance",
+  "version": "1.0",
+  "description": "Governance assessment template for organizations using AI systems for Environmental, Social, and Governance (ESG) monitoring, reporting, and decision-making.",
+  "domains": [
+    {
+      "domain_id": "ESG-E",
+      "name": "Environmental AI Governance",
+      "description": "Governance of AI systems used for environmental monitoring, carbon tracking, climate risk modeling, and sustainability reporting.",
+      "controls": [
+        {
+          "control_id": "ESG-E-01",
+          "name": "Environmental Data Quality",
+          "description": "Ensure AI systems processing environmental data use validated, traceable, and auditable data sources."
+        },
+        {
+          "control_id": "ESG-E-02",
+          "name": "Carbon & Emissions AI Accuracy",
+          "description": "Validate accuracy and reliability of AI models used for carbon footprint calculation and emissions tracking."
+        },
+        {
+          "control_id": "ESG-E-03",
+          "name": "Climate Risk Model Governance",
+          "description": "Govern AI-based climate risk models including scenario analysis, validation, and uncertainty disclosure."
+        },
+        {
+          "control_id": "ESG-E-04",
+          "name": "AI System Environmental Footprint",
+          "description": "Monitor and report the environmental impact (energy consumption, carbon footprint) of AI systems themselves."
+        }
+      ]
+    },
+    {
+      "domain_id": "ESG-S",
+      "name": "Social AI Governance",
+      "description": "Governance of AI systems used for social impact assessment, workforce analytics, diversity monitoring, and community engagement.",
+      "controls": [
+        {
+          "control_id": "ESG-S-01",
+          "name": "Bias and Fairness in Social AI",
+          "description": "Assess and mitigate bias in AI systems used for workforce analytics, hiring, and social impact measurement."
+        },
+        {
+          "control_id": "ESG-S-02",
+          "name": "Privacy in Social Data Processing",
+          "description": "Ensure AI systems handling social data (employee, community, health) comply with privacy regulations and ethical standards."
+        },
+        {
+          "control_id": "ESG-S-03",
+          "name": "Human Rights Impact Assessment",
+          "description": "Conduct AI-specific human rights impact assessments for systems affecting communities and stakeholders."
+        },
+        {
+          "control_id": "ESG-S-04",
+          "name": "Stakeholder Transparency",
+          "description": "Provide transparent disclosures about AI use in social impact measurement and decision-making."
+        }
+      ]
+    },
+    {
+      "domain_id": "ESG-G",
+      "name": "Governance of AI in ESG Reporting",
+      "description": "Oversight, accountability, and governance structures for AI systems used in ESG reporting and compliance.",
+      "controls": [
+        {
+          "control_id": "ESG-G-01",
+          "name": "AI ESG Reporting Accountability",
+          "description": "Define clear accountability structures for AI-driven ESG reporting outputs and decisions."
+        },
+        {
+          "control_id": "ESG-G-02",
+          "name": "Regulatory Compliance Alignment",
+          "description": "Ensure AI-based ESG monitoring aligns with applicable regulations (EU CSRD, SEC climate rules, TCFD, etc.)."
+        },
+        {
+          "control_id": "ESG-G-03",
+          "name": "AI Model Auditability",
+          "description": "Maintain audit trails and explainability for AI models used in ESG scoring and rating."
+        },
+        {
+          "control_id": "ESG-G-04",
+          "name": "Third-Party AI Vendor Governance",
+          "description": "Govern third-party AI tools and vendors used for ESG data collection, analysis, and reporting."
+        }
+      ]
+    },
+    {
+      "domain_id": "ESG-I",
+      "name": "ESG Data Integration & AI Pipeline",
+      "description": "Governance of data pipelines and integration points where AI processes ESG-related information.",
+      "controls": [
+        {
+          "control_id": "ESG-I-01",
+          "name": "ESG Data Pipeline Integrity",
+          "description": "Ensure integrity, completeness, and consistency of data flowing through AI-powered ESG pipelines."
+        },
+        {
+          "control_id": "ESG-I-02",
+          "name": "Cross-Domain Data Reconciliation",
+          "description": "Validate consistency of AI outputs across environmental, social, and governance data domains."
+        },
+        {
+          "control_id": "ESG-I-03",
+          "name": "Continuous Monitoring and Alerting",
+          "description": "Implement AI-driven continuous monitoring with alerts for ESG metric anomalies and threshold breaches."
+        }
+      ]
+    }
+  ]
+}
