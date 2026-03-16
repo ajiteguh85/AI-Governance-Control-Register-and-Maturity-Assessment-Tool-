@@ -1,17 +1,24 @@
-"""Tests for validation routines."""
+"""Tests for validation routines and deployment test protocols."""
 
 import unittest
 
 from ai_governance.models import (
+    AIUseCase,
     AssessmentResult,
     GovernanceControl,
     GovernanceDomain,
+    RiskLevel,
+    UseCaseStatus,
 )
 from ai_governance.validation import (
+    create_standard_test_protocol,
+    render_protocol_report,
     validate_assessment,
     validate_control,
     validate_domain,
     validate_score_input,
+    validate_test_protocol,
+    validate_use_case,
 )
 
 
@@ -36,6 +43,11 @@ class TestValidateControl(unittest.TestCase):
         result = validate_control(ctrl)
         self.assertTrue(result.is_valid)
         self.assertEqual(len(result.warnings), 1)
+
+    def test_negative_weight(self):
+        ctrl = GovernanceControl("C1", "Name", "Desc", "D1", weight=-1.0)
+        result = validate_control(ctrl)
+        self.assertFalse(result.is_valid)
 
 
 class TestValidateDomain(unittest.TestCase):
@@ -96,6 +108,117 @@ class TestValidateScoreInput(unittest.TestCase):
     def test_float_with_decimal(self):
         valid, msg = validate_score_input(3.5)
         self.assertFalse(valid)
+
+
+# ---------------------------------------------------------------------------
+# AI-ML Use Case Validation
+# ---------------------------------------------------------------------------
+
+class TestValidateUseCase(unittest.TestCase):
+    def test_valid_use_case(self):
+        uc = AIUseCase(
+            "UC1", "Test", "Desc", "Mining Ops", "safety",
+            ai_techniques=["random_forest"], data_sources=["sensors"],
+        )
+        result = validate_use_case(uc)
+        self.assertTrue(result.is_valid)
+
+    def test_empty_id(self):
+        uc = AIUseCase("", "Test", "Desc", "BU", "safety")
+        result = validate_use_case(uc)
+        self.assertFalse(result.is_valid)
+
+    def test_nonstandard_category_warns(self):
+        uc = AIUseCase(
+            "UC1", "Test", "Desc", "BU", "custom_category",
+            ai_techniques=["nn"], data_sources=["db"],
+        )
+        result = validate_use_case(uc)
+        self.assertTrue(result.is_valid)  # warning only
+        self.assertTrue(len(result.warnings) > 0)
+
+    def test_no_techniques_warns(self):
+        uc = AIUseCase("UC1", "Test", "Desc", "BU", "safety", data_sources=["db"])
+        result = validate_use_case(uc)
+        self.assertTrue(result.is_valid)
+        self.assertTrue(any("technique" in w.message.lower() for w in result.warnings))
+
+    def test_invalid_maturity_score(self):
+        uc = AIUseCase("UC1", "Test", "Desc", "BU", "safety", maturity_score=7)
+        result = validate_use_case(uc)
+        self.assertFalse(result.is_valid)
+
+
+# ---------------------------------------------------------------------------
+# Deployment Test Protocol
+# ---------------------------------------------------------------------------
+
+class TestDeploymentTestProtocol(unittest.TestCase):
+    def test_create_standard_protocol(self):
+        protocol = create_standard_test_protocol(
+            "TP-001", "UC-001", "TestModel", "1.0",
+        )
+        self.assertEqual(protocol.protocol_id, "TP-001")
+        self.assertGreater(len(protocol.steps), 10)
+        self.assertFalse(protocol.is_complete)
+
+    def test_protocol_pass(self):
+        protocol = create_standard_test_protocol(
+            "TP-002", "UC-002", "Model", "1.0",
+        )
+        for step in protocol.steps:
+            step.passed = True
+        self.assertTrue(protocol.is_complete)
+        self.assertTrue(protocol.is_passed)
+        self.assertAlmostEqual(protocol.pass_rate, 1.0)
+
+    def test_protocol_fail_mandatory(self):
+        protocol = create_standard_test_protocol(
+            "TP-003", "UC-003", "Model", "1.0",
+        )
+        for step in protocol.steps:
+            step.passed = True
+        # Fail a mandatory step
+        protocol.steps[0].passed = False
+        self.assertTrue(protocol.is_complete)
+        self.assertFalse(protocol.is_passed)
+
+    def test_protocol_completion_rate(self):
+        protocol = create_standard_test_protocol(
+            "TP-004", "UC-004", "Model", "1.0",
+        )
+        total = len(protocol.steps)
+        protocol.steps[0].passed = True
+        self.assertAlmostEqual(protocol.completion_rate, 1 / total)
+
+    def test_render_report(self):
+        protocol = create_standard_test_protocol(
+            "TP-005", "UC-005", "SAG Mill Model", "2.0",
+        )
+        for step in protocol.steps:
+            step.passed = True
+        report = render_protocol_report(protocol)
+        self.assertIn("SAG Mill Model", report)
+        self.assertIn("PASS", report)
+        self.assertIn("PASSED", report)
+
+    def test_validate_protocol_incomplete(self):
+        protocol = create_standard_test_protocol(
+            "TP-006", "UC-006", "Model", "1.0",
+        )
+        result = validate_test_protocol(protocol)
+        self.assertTrue(result.is_valid)  # warnings only
+        self.assertTrue(len(result.warnings) > 0)
+
+    def test_validate_protocol_failed(self):
+        protocol = create_standard_test_protocol(
+            "TP-007", "UC-007", "Model", "1.0",
+        )
+        for step in protocol.steps:
+            step.passed = True
+        protocol.steps[0].passed = False  # mandatory fail
+        result = validate_test_protocol(protocol)
+        self.assertFalse(result.is_valid)
 
 
 if __name__ == "__main__":
